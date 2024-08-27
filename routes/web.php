@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController; // Ensure CategoryController is imp
 use App\Http\Controllers\ProductController; // Ensure ProductController is imported
 use App\Http\Controllers\CityController; // Ensure CityController is imported
 use App\Http\Controllers\ParameterController; // Ensure ParameterController is imported
+use App\Http\Controllers\ProfileController; // Ensure ProfileController is imported
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::post('/logout', function () {
 
 // Middleware to check if user is authenticated
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 });
 
 // Admin routes
@@ -67,4 +68,7 @@ Route::middleware(['auth', 'admin'])->group(function () { // Assuming you have a
     Route::post('/admin/parameters', [ParameterController::class, 'store'])->name('admin.parameters.store'); // Store parameter
     // Add more routes as needed
 });
+
+// Add the "My Profile" route
+Route::get('/admin/profile', [ProfileController::class, 'index'])->name('admin.profile');
 
