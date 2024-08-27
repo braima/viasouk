@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    // Show the login form
+    public function showLoginForm()
+    {
+        return view('auth.login'); // Ensure you have a login.blade.php view in resources/views/auth
+    }
+
     public function login(Request $request) {
         // Validate credentials
         $credentials = $request->validate([
@@ -24,5 +30,13 @@ class LoginController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user instanceof \App\Models\Admin) {
+            return redirect()->route('admin.dashboard'); // Redirect admin to the dashboard
+        }
+        return redirect()->intended($this->redirectTo); // Redirect other users
     }
 }

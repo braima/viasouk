@@ -8,6 +8,6 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('user.dashboard'); // Return the user dashboard view
+        return view('user.dashboard'); // Ensure you have a user.dashboard.blade.php view
     }
 }

@@ -8,6 +8,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard'); // Return the admin dashboard view
+        return view('admin.dashboard'); // Ensure you have an admin.dashboard.blade.php view
     }
 }
